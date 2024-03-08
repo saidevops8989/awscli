@@ -14,9 +14,17 @@ aws s3 rm s3://ANYBUCKETNAME/examplefile               ## to delete the file fro
 
 ################# ECR ###################
 
-aws ecr create-repository --repository-name hello-repository --region us-east-1
+#aws ecr create-repository --repository-name hello-repository --region us-east-1
 
 output:
-REPOSITORY      2024-03-08T12:52:23.208000-05:00        MUTABLE 381492240550    arn:aws:ecr:us-east-1:381492240550:repository/hello-repository  hello-repository      381492240550.dkr.ecr.us-east-1.amazonaws.com/hello-repository
+REPOSITORY      2024-03-08T12:52:23.208000-05:00        MUTABLE 381492****    arn:aws:ecr:us-east-1:3814922****:repository/hello-repository  hello-repository      3814******.dkr.ecr.us-east-1.amazonaws.com/hello-repository
+
+#docker tag hello-world:latest 3814922****.dkr.ecr.us-east-1.amazonaws.com/hello-repository
+
+#docker images
+REPOSITORY                                                      TAG       IMAGE ID       CREATED         SIZE
+381492*****.dkr.ecr.us-east-1.amazonaws.com/hello-repository   latest    a81f976411f8   4 minutes ago   370MB
+
+
 
 
