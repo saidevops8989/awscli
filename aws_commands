@@ -25,6 +25,32 @@ REPOSITORY      2024-03-08T12:52:23.208000-05:00        MUTABLE 381492****    ar
 REPOSITORY                                                      TAG       IMAGE ID       CREATED         SIZE
 381492*****.dkr.ecr.us-east-1.amazonaws.com/hello-repository   latest    a81f976411f8   4 minutes ago   370MB
 
+###LOGIN TO ECR#####
+
+#aws2 ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 3814******.dkr.ecr.us-east-1.amazonaws.com
+Login Succeeded
+
+#docker push 3814922******.dkr.ecr.us-east-1.amazonaws.com/hello-repository
+Using default tag: latest
+The push refers to repository [381492*****.dkr.ecr.us-east-1.amazonaws.com/hello-repository]
+bce7691983bf: Pushed 
+8f28be65afdd: Pushed 
+815b6ea5484b: Pushed 
+2ceae5655886: Pushed 
+latest: digest: sha256:ea2af498b04e5e85cfeab9db9b418009112ed89d609c05645ebe6e79a77105b8 size: 1155
+
+##delete images in ECR ###
+#aws ecr batch-delete-image --repository-name hello-repository --image-ids imageTag=latest --region us-east-1
+IMAGEIDS        sha256:ea2af498b04e5e85cfeab9db9b418009112ed89d609c05645ebe6e79a77105b8 latest
+
+##delete repositroy###
+aws2 ecr delete-repository --repository-name hello-repository --force --region us-east-1
+REPOSITORY      2024-03-08T12:52:23.208000-05:00        MUTABLE 381492240550    arn:aws:ecr:us-east-1:381492****:repository/hello-repository  hello-repository      3814922****.dkr.ecr.us-east-1.amazonaws.com/hello-repository
+
+
+
+
+
 
 
 
