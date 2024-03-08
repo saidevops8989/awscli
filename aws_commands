@@ -48,6 +48,27 @@ aws2 ecr delete-repository --repository-name hello-repository --force --region u
 REPOSITORY      2024-03-08T12:52:23.208000-05:00        MUTABLE 381492240550    arn:aws:ecr:us-east-1:381492****:repository/hello-repository  hello-repository      3814922****.dkr.ecr.us-east-1.amazonaws.com/hello-repository
 
 
+___________
+#aws2 ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 381492*****.dkr.ecr.us-east-1.amazonaws.com/demorepo
+
+#docker tag hello-world:latest 381492******.dkr.ecr.us-east-1.amazonaws.com/demorepo
+
+#docker images      
+3814922*****.dkr.ecr.us-east-1.amazonaws.com/demorepo           latest    a81f976411f8   27 minutes ago   370MB
+
+#docker push 381492*****.dkr.ecr.us-east-1.amazonaws.com/demorepo
+Using default tag: latest
+The push refers to repository [381492*****.dkr.ecr.us-east-1.amazonaws.com/demorepo]
+bce7691983bf: Pushed 
+8f28be65afdd: Pushed 
+815b6ea5484b: Pushed 
+2ceae5655886: Pushed 
+latest: digest: sha256:ea2af498b04e5e85cfeab9db9b418009112ed89d609c05645ebe6e79a77105b8 size: 1155
+
+SEE images in README file how it looks on aws console
+
+
+
 
 
 
