@@ -69,6 +69,54 @@ SEE images in README file how it looks on aws console
 
 
 
+####EKS clusters from command lines #####
+
+We need to install EKSCTL before we execute this command
+
+#eksctl create cluster --name qa-cluster --version 1.27 --region us-east-1 --nodegroup-name linux-nodes --node-type t2.micro --nodes 2
+
+sample output-
+eksctl version 0.175.0
+2024-04-02 12:44:40 [ℹ]  using region us-east-1
+2024-04-02 12:44:40 [ℹ]  setting availability zones to [us-east-1c us-east-1b]
+2024-04-02 12:44:40 [ℹ]  subnets for us-east-1c - public:192.168.0.0/19 private:192.168.64.0/19
+2024-04-02 12:44:40 [ℹ]  subnets for us-east-1b - public:192.168.32.0/19 private:192.168.96.0/19
+2024-04-02 12:44:40 [ℹ]  nodegroup "linux-nodes" will use "" [AmazonLinux2/1.27]
+2024-04-02 12:44:40 [ℹ]  using Kubernetes version 1.27
+2024-04-02 12:44:40 [ℹ]  creating EKS cluster "qa-cluster" in "us-east-1" region with managed nodes
+2024-04-02 12:44:40 [ℹ]  will create 2 separate CloudFormation stacks for cluster itself and the initial managed nodegroup
+2024-04-02 12:44:40 [ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=us-east-1 --cluster=qa-cluster'
+2024-04-02 12:44:40 [ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "qa-cluster" in "us-east-1"
+2024-04-02 12:44:40 [ℹ]  CloudWatch logging will not be enabled for cluster "qa-cluster" in "us-east-1"
+2024-04-02 12:44:40 [ℹ]  you can enable it with 'eksctl utils update-cluster-logging --enable-types={SPECIFY-YOUR-LOG-TYPES-HERE (e.g. all)} --region=us-east-1 --cluster=qa-cluster'
+2024-04-02 12:44:40 [ℹ]  
+2 sequential tasks: { create cluster control plane "qa-cluster", 
+    2 sequential sub-tasks: { 
+        wait for control plane to become ready,
+        create managed nodegroup "linux-nodes",
+    } 
+}
+2024-04-02 12:44:40 [ℹ]  building cluster stack "eksctl-qa-cluster-cluster"
+2024-04-02 12:44:41 [ℹ]  deploying stack "eksctl-qa-cluster-cluster"
+2024-04-02 12:45:11 [ℹ]  waiting for CloudFormation stack "eksctl-qa-cluster-cluster"
+
+#kubectl get nodes
+
+#kubectl get ns
+
+#kubectl get cs
+
+#eksctl delete cluster --name qa-cluster --region us-east-1 
+2024-04-02 13:10:44 [ℹ]  deleting EKS cluster "qa-cluster"
+2024-04-02 13:10:45 [ℹ]  will drain 0 unmanaged nodegroup(s) in cluster "qa-cluster"
+2024-04-02 13:10:45 [ℹ]  starting parallel draining, max in-flight of 1
+2024-04-02 13:10:45 [ℹ]  deleted 0 Fargate profile(s)
+2024-04-02 13:10:46 [✔]  kubeconfig has been updated
+2024-04-02 13:10:46 [ℹ]  cleaning up AWS load balancers created by Kubernetes objects of Kind Service or Ingress
+2024-04-02 13:10:47 [ℹ]  
+2 sequential tasks: { delete nodegroup "linux-nodes", delete cluster control plane "qa-cluster" [async] 
+
+
 
 
 
